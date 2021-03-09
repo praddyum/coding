@@ -151,6 +151,50 @@ node *insert(node * head){
 	return head;
 }
 
+//LL Deletion function
+node *deletel(node * head){
+	char op;
+	int op1;
+
+	do{
+		printing(head);
+		cout<<"\n\nChoose one:\n\t1) Starting \n\t2) Specific Position\n\t3) Ending"<<endl;
+		cout<<"Input: ";
+		cin>>op1;
+		node * delp=head;
+		if(op1==1){
+			if(head==NULL){
+				cout<<"LL is already empty";
+			}
+			else{
+				
+				head=head->next;
+				free(delp);
+			}
+		}
+		else if(op1==2){
+			
+		}
+		else if(op1==3){
+			node* b_del=head;
+			while(b_del->next->next!=NULL){
+				b_del=b_del->next;
+			}
+			delp=b_del->next;
+			b_del->next=NULL;
+			free(delp);
+		}
+		else{
+			cout<<"Invalid Option"<<endl;
+		}
+
+		cout<<"\nWanna Delete more(Y/N): ";
+		cin>>op;
+	}while(op=='y' || op=='Y');
+	
+	return head;
+}
+
 int main(){
 	
 	node *head=NULL;
@@ -159,7 +203,7 @@ int main(){
 	
 	
 	do{
-	cout<<"Choose one:\n\t1) Create LL\n\t2) Print LL\n\t3) Insert"<<endl;
+	cout<<"Choose one:\n\t1) Create LL\n\t2) Print LL\n\t3) Insert\n\t4) Delete"<<endl;
 	cout<<"Input: ";
 	cin>>op1;
 	
@@ -175,6 +219,8 @@ int main(){
 
 		case 3: head=insert(head);
 		        break;
+		case 4: head=deletel(head);
+				break;
 
 		default : cout<<"Invalid Input"<<endl;
 	}
