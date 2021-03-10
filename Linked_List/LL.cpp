@@ -58,6 +58,7 @@ node *insert(node * head){
 	int op1,val;
 
 	do{
+		cout<<"\n";
 		printing(head);
 		cout<<"\n\nChoose one:\n\t1) Starting \n\t2) Specific Position\n\t3) Ending"<<endl;
 		cout<<"Input: ";
@@ -77,55 +78,25 @@ node *insert(node * head){
 			}
 		}
 		else if(op1==2){
-			int pos,count=1,st=0,flg=3;
-			cout<<"Input position: ";
+			int pos,count=0;
+			cout<<"Input position[ Use '0' Indexing]: ";
 			cin>>pos;
 			node * temp =head;
 
-			//Edge Case with pos=1 
-			if(pos==1){
+			if(pos==0){
 				ptr->next=head;
 				head=ptr;
-				st=1;
 			}
 
-			//edge Case with pos=2
-			else if(pos==2){
-				ptr->next=head->next;
-				head->next=ptr;
-				st=1;
+			while(temp!=NULL && count<pos-1){
+				temp=temp->next;
+				count++;
 			}
-
-			//Getting at the node (pos-1)
-			while(count<pos-1 && st==0){
-				cout<<"Inside"<<endl;
-				if(temp->next!=NULL){
-					temp=temp->next;
-					count++;
-					flg=0;
-				}
-				
-				//If LL ends before our required pos
-				else{
-
-					//Just before the required pos = Last node
-					if(count==pos-1){
-						flg=0;
-					}
-
-					//LL is too short	
-					else{
-						cout<<"Position out of bound";
-						flg=2;
-					}
-					break;
-				}
-			}
-			cout<<"Flg= "<<flg<<endl;
-			if(flg==0){
+			if(temp!=NULL){
 				ptr->next=temp->next;
 				temp->next=ptr;
 			}
+
 			
 		}
 		else if(op1==3){
@@ -157,6 +128,7 @@ node *deletel(node * head){
 	int op1;
 
 	do{
+		cout<<"\n";
 		printing(head);
 		cout<<"\n\nChoose one:\n\t1) Starting \n\t2) Specific Position\n\t3) Ending"<<endl;
 		cout<<"Input: ";
@@ -173,7 +145,28 @@ node *deletel(node * head){
 			}
 		}
 		else if(op1==2){
-			
+			int ch,ind=0;
+			cout<<"Position(Use '0' Indexing): ";
+			cin>>ch;
+
+			node *b_del=head;
+			node *delp=NULL;
+
+			if(ch==0){
+				delp=b_del;
+				head=head->next;
+				free(delp);
+			}
+
+			while(b_del->next!=NULL && ind<ch-1){
+				b_del=b_del->next;
+				ind++;
+			}
+			if(b_del->next!=NULL){
+				delp=b_del->next;
+				b_del->next=b_del->next->next;
+				free(delp);
+			}
 		}
 		else if(op1==3){
 			node* b_del=head;
@@ -217,8 +210,11 @@ int main(){
 		case 2: printing(head);
 				break;
 
+				//Insert element to LL
 		case 3: head=insert(head);
 		        break;
+
+				//Delete element from LL
 		case 4: head=deletel(head);
 				break;
 
