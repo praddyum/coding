@@ -1,27 +1,31 @@
 /*
-# Main Concept
+                        15
+                     /      \
+                    /        \
+                   10         20
+                  /  \       /  \
+                 /    \     /    \
+                8     12   17    25
+                          /
+                         /
+                        16 
 
-int minsearch(node * root){
+View : https://www.youtube.com/watch?v=_pnqMz5nrRs
+
+Findheight (root){
     if(root==NULL){
         return -1;
     }
-    node * temp =root;
-    while(temp->left!=NULL){
-        temp=temp->left;
-    }
-    return temp->data;
+
+    int leftheight,rightheight;
+    leftheight= Findheight(root->left);
+    rightheight= Findheight(root->right);
+
+    return max(leftheight,rightheight) +1 ;
 }
 
-int maxsearch(node * root){
-    if(root==NULL){
-        return -1;
-    }
-    node * temp =root;
-    while(temp->right!=NULL){
-        temp=temp->right;
-    }
-    return temp->data;
-}
+Time Complexity = O(n)
+
 */
 
 #include<bits/stdc++.h>
@@ -55,26 +59,11 @@ node * insert(node * root, int data){
     return root;
 }
 
-int minsearch(node * root){
+int height(node * root){
     if(root==NULL){
         return -1;
     }
-    node * temp =root;
-    while(temp->left!=NULL){
-        temp=temp->left;
-    }
-    return temp->data;
-}
-
-int maxsearch(node * root){
-    if(root==NULL){
-        return -1;
-    }
-    node * temp =root;
-    while(temp->right!=NULL){
-        temp=temp->right;
-    }
-    return temp->data;
+    return max(height(root->left),height(root->right))+1;
 }
 
 int main(){
@@ -86,10 +75,11 @@ int main(){
     root=insert(root, 12);
     root=insert(root, 17);
     root=insert(root, 25);
+    root=insert(root, 16);
     
-    cout<<"Minimum: "<<minsearch(root);
-    cout<<"\nMaximum: "<<maxsearch(root);
+    cout<<"Height= "<<height(root);
 
     return 0;
 
 }
+

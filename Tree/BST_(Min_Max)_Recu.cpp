@@ -1,3 +1,28 @@
+/*
+# Main Concept
+
+int minsearch(node * root){
+    if(root==NULL){
+        return -1;
+    }
+    if(root->left==NULL){
+        return root->data;
+    }
+    return minsearch(root->left);
+}
+
+int maxsearch(node * root){
+    if(root==NULL){
+        return -1;
+    }
+    if(root->right==NULL){
+        return root->data;
+    }
+    return maxsearch(root->right);
+}
+
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 
