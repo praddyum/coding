@@ -1,53 +1,57 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-struct Node{
+struct node{
     int data;
-    Node * left;
-    Node * right;
+    node * left;
+    node * right;
 };
 
-Node* GetNewNode(int data){
-    Node* newNode=new Node();
-    newNode->data=data;
-    newNode->left=newNode->right=NULL;
-    return newNode;
+node * createnode(int data){
+
+    node * newnode= new node();
+    newnode->data=data;
+    newnode->left=NULL;
+    newnode->right=NULL;
+    return newnode;
 }
 
-Node* Insert(Node* root,int data){
+node * insert(node * root,int data){
     if(root==NULL){
-        root=GetNewNode(data);
-        
+        root=createnode(data);
     }
-    else if(data <= root->data){
-        root->left=Insert(root->left,data);
+    else if(data<=root->data){
+        root->left=insert(root->left,data);
     }
-    else{
-        root->right=Insert(root->right,data);
+    else {
+        root->right=insert(root->right,data);
     }
     return root;
 }
 
-bool Search(Node* root,int data){
-    if(root==NULL) 
+bool lookup(node * root, int data){
+    if(root==NULL){
         return false;
-    else if(root->data==data)
+    }
+    else if(data==root->data){
         return true;
-    else if(data <= root->data)
-        return Search(root->left,data);
-    else
-        return Search(root->right,data);
-
+    }
+    else if(data<=root->data){
+        return lookup(root->left,data);
+    }
+    else{
+        return lookup(root->right,data);
+    }
 }
-
 
 int main(){
-
-    Node * root=NULL;
-    root=Insert(root,15);
-    root=Insert(root,20);
-    root=Insert(root,10);
-    root=Insert(root,2);
-    cout<<Search(root,3);
+    
+    node * root=NULL;
+    root=insert(root,15);
+    root=insert(root,6);
+    root=insert(root,10);
+    root=insert(root,11);
+    cout<<lookup(root,1);
     return 0;
 }
+
