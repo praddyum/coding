@@ -39,14 +39,14 @@ node * adding(node * root,int data){
             q.push(temp->left);
         else{
             temp->left=temp_node;
-            while(!q.empty()) q.pop();
+            //while(!q.empty()) q.pop();
             return root;
         }
         if(temp->right)
             q.push(temp->right);
         else{
             temp->right=temp_node;
-            while(!q.empty()) q.pop();
+            //while(!q.empty()) q.pop();
             return root;
         }
 
