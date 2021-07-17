@@ -6,7 +6,7 @@ int main(){
     int arr[10]={1,7,3,9,2,6,4,7,5,8};
     int i,j,flag=1;
 
-    for(i=0;i<10-1 && flag!=0;i++){
+    for(i=0;i<10-1 && flag==1;i++){
         flag=0;
         for(j=0;j<10-1-i;j++){
             if(arr[j]>arr[j+1]){
