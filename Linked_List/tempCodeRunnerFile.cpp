@@ -1,11 +1,4 @@
-#include<bits/stdc++.h>
-using namespace std;
+const int q2 = 7;
 
-int main(){
-
-    int *p=new int[12];
-    cout<<p[12];
-
-    return 0;
-}
-
+	// //Compilation error
+	// p = &q2;

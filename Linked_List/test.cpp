@@ -1,14 +1,28 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
+
+class A{
+	public:
+		void show(){
+			cout<<"This is A";
+		}
+};
+
+class B:public A{
+	public:
+		void show(){
+			cout<<"This is B";
+		}
+};
 
 int main(){
 
-    int a=10, b=20;
-    swap(a,b);
-    cout<<a<<" "<<b;
-    
-    
-
-    return 0;
+	A a;
+	B b;
+	A *k;
+	k=&a;
+	k->show();
+	k=&b;
+	k->show();
+	return 0;
 }
-
